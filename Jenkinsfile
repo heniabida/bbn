@@ -1,17 +1,17 @@
     node {
         def buildNum = env.BUILD_NUMBER 
         def branchName = "master"
-        def gitBranch = env.GIT_BRANCH
+        /*def gitBranch = env.GIT_BRANCH
         def buildTag = env.BUILD_TAG
         def tagName = env.TAG_NAME
       
             /* Récupération du commitID long */
-            def commitIdLong = sh returnStdout: true, script: 'git rev-parse HEAD'
+            //def commitIdLong = sh returnStdout: true, script: 'git rev-parse HEAD'
 
             /* Récupération du commitID court */
-            def commitId = commitIdLong.take(7)
+            //def commitId = commitIdLong.take(7)
 
-            print """
+           /* print """
             ###################################################################################################################################################
             #                                                       BanchName: $branchName                                                                    #
             #                                                       CommitID: $commitId                                                                       #
@@ -21,7 +21,7 @@
             #                                                       Git Branch : $gitBranch
             #                                                       
             ###################################################################################################################################################
-            """
+            """*/
             stage('GitLab Checkout') {
             
                 git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
