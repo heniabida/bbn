@@ -51,6 +51,6 @@ node{
                 sh 'composer install'
         }
          stage('Update Packagist') { 
-           sh "curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=heniabida&apiToken=BdWa9m27-XtKyRYrgFdi' -d'{"repository":{"url":"https://packagist.org/packages/bbnh/bbnh/"}}'"
+           //sh "curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=heniabida&apiToken=BdWa9m27-XtKyRYrgFdi' -d'{"repository":{"url":"https://packagist.org/packages/bbnh/bbnh/"}}'"
             }
 }
