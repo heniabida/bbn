@@ -34,7 +34,7 @@ node{        def buildNum = env.BUILD_NUMBER
             
                 checkout scm
                 sh 'echo $branchName'
-                //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
+                git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
             }            
         stage('Install  Dependencies') {      
