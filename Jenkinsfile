@@ -31,7 +31,7 @@ node{        def buildNum = env.BUILD_NUMBER
             ###################################################################################################################################################
             """
             stage('GitLab Checkout') {
-            git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
+            //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 checkout scm
                 sh 'echo $branchName'
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
