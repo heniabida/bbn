@@ -24,7 +24,6 @@ node{        def buildNum = env.BUILD_NUMBER
             #                                                       Tag Name : $tagName
             #                                                       Git Branch : $gitBranch
             #                                                       Git Local Branch : $gitLocalBranch
-            #                                                       Branch Name : $branchName
             #                                                       Change ID : $changeId
             #                                                       Change URL : $changeUrl
             #                                                       Change Title : $changeTitle
