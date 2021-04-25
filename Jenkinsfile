@@ -8,7 +8,7 @@ node{
                 
             }  
          def buildNum = env.BUILD_NUMBER 
-        //def branchName = "master"
+        /*def branchName = "master"*/
         def gitBranch = env.GIT_BRANCH
         def branchName = env.BRANCH_NAME
         def buildTag = env.BUILD_TAG
