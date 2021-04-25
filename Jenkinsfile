@@ -6,7 +6,8 @@ node{
                 //sh 'echo $branchName'
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
-            }   
+            }  
+        /**/
          def buildNum = env.BUILD_NUMBER 
         //def branchName = "master"
         def gitBranch = env.GIT_BRANCH
