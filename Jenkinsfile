@@ -1,5 +1,9 @@
 node{
         
+        triggers {
+        githubPush()
+    }
+        
         stage('GitLab Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 checkout scm
