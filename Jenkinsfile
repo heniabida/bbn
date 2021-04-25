@@ -1,4 +1,4 @@
-        def buildNum = env.BUILD_NUMBER 
+node{        def buildNum = env.BUILD_NUMBER 
         def branchName = "master"
         /*def gitBranch = env.GIT_BRANCH
         def buildTag = env.BUILD_TAG
@@ -31,5 +31,5 @@
         stage('Install  Dependencies') {      
                 
                 sh 'composer install'
-  
+        }
             }
