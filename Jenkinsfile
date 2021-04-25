@@ -1,8 +1,13 @@
 node{        def buildNum = env.BUILD_NUMBER 
         def branchName = "master"
         def gitBranch = env.GIT_BRANCH
+        def branchName = env.BRANCH_NAME
         def buildTag = env.BUILD_TAG
         def tagName = env.TAG_NAME
+        def gitLocalBranch = env.GIT_LOCAL_BRANCH
+        def changeId = env.CHANGE_ID
+         def changeUrl = env.CHANGE_URL
+     def changeTitle = env.CHANGE_TITLE
       
             /* Récupération du commitID long */
             def commitIdLong = sh returnStdout: true, script: 'git rev-parse HEAD'
@@ -18,6 +23,11 @@ node{        def buildNum = env.BUILD_NUMBER
             #                                                       Build Tag : $buildTag
             #                                                       Tag Name : $tagName
             #                                                       Git Branch : $gitBranch
+            #                                                       Git Local Branch : $gitLocalBranch
+            #                                                       Branch Name : $branchName
+            #                                                       Change ID : $changeId
+            #                                                       Change URL : $changeUrl
+            #                                                       Change Title : $changeTitle
             #                                                       
             ###################################################################################################################################################
             """
