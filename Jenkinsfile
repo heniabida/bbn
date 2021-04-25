@@ -1,4 +1,3 @@
-    node {
         def buildNum = env.BUILD_NUMBER 
         def branchName = "master"
         /*def gitBranch = env.GIT_BRANCH
@@ -24,7 +23,9 @@
             """*/
             stage('GitLab Checkout') {
             
-                git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
+                checkout scm
+                sh 'echo $BRANCH_NAME'
+                //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
             }            
         stage('Install  Dependencies') {      
