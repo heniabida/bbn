@@ -1,4 +1,4 @@
-node{        def buildNum = env.BUILD_NUMBER 
+node{        /*def buildNum = env.BUILD_NUMBER 
         //def branchName = "master"
         def gitBranch = env.GIT_BRANCH
         def branchName = env.BRANCH_NAME
@@ -7,14 +7,14 @@ node{        def buildNum = env.BUILD_NUMBER
         def gitLocalBranch = env.GIT_LOCAL_BRANCH
         def changeId = env.CHANGE_ID
          def changeUrl = env.CHANGE_URL
-     def changeTitle = env.CHANGE_TITLE
+     def changeTitle = env.CHANGE_TITLE*/
       
             /* Récupération du commitID long */
-            def commitIdLong = sh returnStdout: true, script: 'git rev-parse HEAD'
+            //def commitIdLong = sh returnStdout: true, script: 'git rev-parse HEAD'
 
             /* Récupération du commitID court */
-            def commitId = commitIdLong.take(7)
-
+            //def commitId = commitIdLong.take(7)
+/*
             print """
             ###################################################################################################################################################
             #                                                       BanchName: $branchName                                                                    #
@@ -30,10 +30,11 @@ node{        def buildNum = env.BUILD_NUMBER
             #                                                       
             ###################################################################################################################################################
             """
+            */
             stage('GitLab Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 checkout scm
-                sh 'echo $branchName'
+                //sh 'echo $branchName'
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
             }            
