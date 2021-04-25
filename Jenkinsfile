@@ -24,7 +24,7 @@
             stage('GitLab Checkout') {
             
                 checkout scm
-                sh 'echo $BRANCH_NAME'
+                sh 'echo $branchName'
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
             }            
