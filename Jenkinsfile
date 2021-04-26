@@ -1,9 +1,7 @@
 properties([pipelineTriggers([githubPush()])])
 
 node{
-        
-        
-        
+              
         stage('GitLab Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 checkout scm
@@ -13,7 +11,8 @@ node{
             }  
         /**/
          def buildNum = env.BUILD_NUMBER 
-        /*def branchName = "master"*/
+        def githubtoken = "BdWa9m27-XtKyRYrgFdi"
+        def gitaccount = "heniabida"
         def gitBranch = env.GIT_BRANCH
         def branchName = env.BRANCH_NAME
         def buildTag = env.BUILD_TAG
@@ -51,6 +50,6 @@ node{
                 sh 'composer install'
         }
          stage('Update Packagist') { 
-           //sh "curl -XPOST -H'content-type:application/json' 'https://packagist.org/api/update-package?username=heniabida&apiToken=BdWa9m27-XtKyRYrgFdi' -d'{"repository":{"url":"https://packagist.org/packages/bbnh/bbnh/"}}'"
+  sh "curl -XPOST -H'content-type:application/json' https://packagist.org/api/update-package?username=$gitaccount&apiToken=$githubtoken -d"{"repository":{"url":"https://packagist.org/packages/bbnh/bbnh/"}}""
             }
 }
