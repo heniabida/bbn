@@ -45,10 +45,10 @@ node{
             """
             
             stage('SonarQube analysis') {
-            dir('reflowUI') {
+            
             withSonarQubeEnv('SonarQube_Server') { 
                 sh "/opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=bbn-php-master -Dsonar.sources=. -Dsonar.host.url=https://sonarqube.bbn.so -Dsonar.login=b53e23d348cfb8999f52fb0f67e2e7365b03ffc8"
-                }
+                
             }
             }
         
