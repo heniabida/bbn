@@ -1,6 +1,5 @@
-triggers {
-        githubPush()
-    }
+properties([pipelineTriggers([githubPush()])])
+
 node{
         
         
