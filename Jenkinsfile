@@ -44,7 +44,21 @@ node{
             ###################################################################################################################################################
             """
             
-
+            stage('SonarQube analysis') {
+            dir('reflowUI') {
+            withSonarQubeEnv('SonarQube_Server') { 
+                sh "/opt/sonar-scanner/bin/sonar-scanner -Dsonar.projectKey=bbn-php-master -Dsonar.sources=. -Dsonar.host.url=https://sonarqube.bbn.so -Dsonar.login=b53e23d348cfb8999f52fb0f67e2e7365b03ffc8"
+                }
+            }
+            }
+        
+            stage("Quality Gate") {
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: false
+                }
+            }
         stage('Install  Dependencies') {      
                 
                 sh 'composer install'
