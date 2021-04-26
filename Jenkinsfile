@@ -50,6 +50,6 @@ node{
                 sh 'composer install'
         }
          stage('Update Packagist') { 
-  sh "curl -XPOST -H'content-type:application/json' https://packagist.org/api/update-package?username=$gitaccount&apiToken=$githubtoken -d"{"repository":{"url":"https://packagist.org/packages/bbnh/bbnh/"}}""
+  sh "bash -x update.sh"
             }
 }
