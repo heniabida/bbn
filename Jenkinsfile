@@ -1,8 +1,9 @@
-node{
-        
-        triggers {
+triggers {
         githubPush()
     }
+node{
+        
+        
         
         stage('GitLab Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
