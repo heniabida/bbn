@@ -4,8 +4,9 @@ node{
               
         stage('GitLab Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
-                checkout scm
-                //sh 'echo $branchName'
+                //checkout scm
+                checkout([$class: 'GitSCM', branches: [[name: 'refs/tags/*']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*', url: 'https://github.com/heniabida/bbn.git']]])      
+          //sh 'echo $branchName'
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
             }  
