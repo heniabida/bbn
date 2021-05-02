@@ -2,7 +2,7 @@ properties([pipelineTriggers([githubPush()])])
 
 node{
               
-        stage('GitLab Checkout') {
+        stage('GitHub Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 //checkout scm
                 checkout([$class: 'GitSCM', branches: [[name: '**/tags/**']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*', url: 'https://github.com/heniabida/bbn.git']]])      
