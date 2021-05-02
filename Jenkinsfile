@@ -64,7 +64,24 @@ node{
                 
                 sh 'composer install'
         }
-         stage('Update Packagist') { 
-  sh "bash -x update.sh"
-            }
+        stage('PHP CS') {      
+                
+                sh 'phpcs -p --report-file=./build/phpcs.log.xml ./src'
+        }
+        stage('PHP Loc') {      
+                
+                sh 'phploc --log-xml=./build/phploc.xml ./src'
+        }
+        stage('PHP MD') {      
+                
+                sh 'phpmd ./src xml cleancode codesize > ./build/phpmd.xml'
+        }
+        stage('PHP MD') {      
+                
+                sh 'phpdox'
+        }
+         
+        stage('Update Packagist') { 
+                sh "bash -x update.sh"
+        }
 }
