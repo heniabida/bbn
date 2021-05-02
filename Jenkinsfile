@@ -64,13 +64,13 @@ node{
                 
                 sh 'composer install'
         }
-        stage('PHP CS') {      
-                
-                sh 'phpcs -p --report-file=./build/phpcs.log.xml ./src'
-        }
         stage('PHP Loc') {      
                 
                 sh 'phploc --log-xml=./build/phploc.xml ./src'
+        }
+        stage('PHP CS') {      
+                
+                sh 'phpcs -p --report-file=./build/phpcs.log.xml ./src'
         }
         stage('PHP MD') {      
                 
