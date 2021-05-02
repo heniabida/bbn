@@ -68,10 +68,10 @@ node{
                 
                 sh 'phploc --log-xml=./build/phploc.xml ./src'
         }
-        stage('PHP CS') {      
+        /*stage('PHP CS') {      
                 
                 sh 'phpcs -p --report-file=./build/phpcs.log.xml ./src'
-        }
+        }*/
         stage('PHP MD') {      
                 
                 sh 'phpmd ./src xml cleancode codesize > ./build/phpmd.xml'
