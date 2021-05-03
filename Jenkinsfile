@@ -67,7 +67,7 @@ node{
         /*stage('PHP Loc') {      
                 
                 sh 'phploc --log-xml=./build/phploc.xml ./src'
-        }
+        }*/
         stage('PHP CS') {      
                 
                 sh 'phpcs -p --report-file=./build/phpcs.log.xml ./src'
@@ -79,9 +79,9 @@ node{
         stage('PHP MD') {      
                 
                 sh 'phpdox'
-        }*/
-         
-        stage('Update Packagist') { 
-                sh "bash -x update.sh"
         }
+         
+        /*stage('Update Packagist') { 
+                sh "bash -x update.sh"
+        }*/
 }
