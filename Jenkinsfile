@@ -45,7 +45,7 @@ node{
             ###################################################################################################################################################
             """
             
-            stage('SonarQube analysis') {
+            /*stage('SonarQube analysis') {
             
             withSonarQubeEnv('SonarQube_Server') { 
                 sh "/opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=bbn-php-master -Dsonar.sources=. -Dsonar.host.url=https://sonarqube.bbn.so -Dsonar.login=b53e23d348cfb8999f52fb0f67e2e7365b03ffc8"
@@ -59,7 +59,7 @@ node{
                     // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: false
                 }
-            }
+            }*/
         stage('Install  Dependencies') {      
                 
                 sh 'composer install'
