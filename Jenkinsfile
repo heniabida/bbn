@@ -4,8 +4,8 @@ node{
               
         stage('GitHub Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
-                checkout scm
-                //checkout([$class: 'GitSCM', branches: [[name: '**/tags/**']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*', url: 'https://github.com/heniabida/bbn.git']]])      
+                //checkout scm
+                checkout([$class: 'GitSCM', branches: [[name: '**/tags/**']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])      
           //sh 'echo $branchName'
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
