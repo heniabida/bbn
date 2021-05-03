@@ -5,7 +5,7 @@ node{
         stage('GitHub Checkout') {
             //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 //checkout scm
-                checkout([$class: 'GitSCM', credentialsId: 'heni_gitea_user',branches: [[name: '**/tags/**']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])      
+                checkout([$class: 'GitSCM', branches: [[name: '**/tags/**']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*',credentialsId: 'heni_gitea_user', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])      
           //sh 'echo $branchName'
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
