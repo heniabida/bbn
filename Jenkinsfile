@@ -10,7 +10,7 @@ node{
                 //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
                 
             }  
-        /**/
+        /*--*/
          def buildNum = env.BUILD_NUMBER 
         def githubtoken = "BdWa9m27-XtKyRYrgFdi"
         def gitaccount = "heniabida"
