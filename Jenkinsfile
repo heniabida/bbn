@@ -3,7 +3,7 @@ properties([pipelineTriggers([githubPush()])])
 node{
               
         stage('GitHub Checkout') {
-            checkout([$class: 'GitSCM', branches: [[name: '**/develop/**']], extensions: [],credentialsId: 'heni_gitea_user', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])      
+            checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'heni_gitea_user', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])    
           
             }  
         /**/
