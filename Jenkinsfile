@@ -6,7 +6,7 @@ node{
             checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'heni_gitea_user', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])    
           
             }  
-        /**/
+        /*test*/
         def buildNum = env.BUILD_NUMBER 
         def gitBranch = env.GIT_BRANCH
         def branchName = env.BRANCH_NAME
