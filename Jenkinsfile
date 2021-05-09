@@ -3,25 +3,21 @@ properties([pipelineTriggers([githubPush()])])
 node{
               
         stage('GitHub Checkout') {
-            //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
-                //checkout scm
-                checkout([$class: 'GitSCM', branches: [[name: '**/tags/**']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*',credentialsId: 'heni_gitea_user', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])      
-          //sh 'echo $branchName'
-                //git branch: $branchName, url: 'https://github.com/heniabida/bbn.git'
-                
+            checkout([$class: 'GitSCM', branches: [[name: '**/tags/**']], extensions: [], userRemoteConfigs: [[refspec: '+refs/tags/*:refs/remotes/origin/tags/*',credentialsId: 'heni_gitea_user', url: 'https://gitea.bbn.so/nabab/bbn-jenkins.git']]])      
+          
             }  
         /**/
          def buildNum = env.BUILD_NUMBER 
-        def githubtoken = "BdWa9m27-XtKyRYrgFdi"
-        def gitaccount = "heniabida"
+        //def githubtoken = "BdWa9m27-XtKyRYrgFdi"
+        //def gitaccount = "heniabida"
         def gitBranch = env.GIT_BRANCH
         def branchName = env.BRANCH_NAME
         def buildTag = env.BUILD_TAG
         def tagName = env.TAG_NAME
         def gitLocalBranch = env.GIT_LOCAL_BRANCH
         def changeId = env.CHANGE_ID
-         def changeUrl = env.CHANGE_URL
-     def changeTitle = env.CHANGE_TITLE
+        def changeUrl = env.CHANGE_URL
+     	def changeTitle = env.CHANGE_TITLE
       
             /* Récupération du commitID long */
             def commitIdLong = sh returnStdout: true, script: 'git rev-parse HEAD'
@@ -45,7 +41,7 @@ node{
             ###################################################################################################################################################
             """
             
-            /*stage('SonarQube analysis') {
+            stage('SonarQube analysis') {
             
             withSonarQubeEnv('SonarQube_Server') { 
                 sh "/opt/sonarscanner/sonarscanner/bin/sonar-scanner -Dsonar.projectKey=bbn-php-master -Dsonar.sources=. -Dsonar.host.url=https://sonarqube.bbn.so -Dsonar.login=b53e23d348cfb8999f52fb0f67e2e7365b03ffc8"
@@ -59,29 +55,46 @@ node{
                     // true = set pipeline to UNSTABLE, false = don't
                     waitForQualityGate abortPipeline: false
                 }
-            }*/
+            }
         stage('Install  Dependencies') {      
                 
                 sh 'composer install'
         }
-        /*stage('PHP Loc') {      
+        stage('PHPDox generation') {      
                 
-                sh 'phploc --log-xml=./build/phploc.xml ./src'
-        }*/
+                sh 'sudo phpdox'
+        }
+        stage('PHP Loc') {      
+                
+                sh 'sudo phploc --log-xml=./build/phploc.xml ./src'
+        }
+        stage('Install PHPCS dependency') {      
+                
+                sh 'sudo composer require --dev squizlabs/php_codesniffer'
+        }
+
         stage('PHP CS') {      
-                
-                sh 'phpcs -p --report-file=./build/phpcs.log.xml ./src'
-        }
-        stage('PHP MD') {      
-                
-                sh 'phpmd ./src xml cleancode codesize > ./build/phpmd.xml'
-        }
-        stage('PHP MD') {      
-                
-                sh 'phpdox'
-        }
+                try {
+           sh 'sudo php vendor/bin/phpcs --report-file=./build/phpcs.log.xml ./src'
+
+            } catch (ex) {
+                unstable('Script failed!')
+              }
+                  }               
+        
+        stage('PHP MD') {   
+          try {
+           sh 'sudo phpmd ./src xml cleancode codesize | tee ./build/phpmd.xml > /dev/null'
+
+            } catch (ex) {
+                unstable('Script failed!')
+              }
+                  }
+  stage('transfet files'){
+  ftpPublisher alwaysPublishFromMaster: false, continueOnError: false, failOnError: false, publishers: [[configName: 'FTP_Heni', transfers: [[asciiMode: false, cleanRemote: true, excludes: '', flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/public_html', remoteDirectorySDF: false, removePrefix: 'build/api/html', sourceFiles: 'build/api/html/**']], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false]]
+  }
          
-        /*stage('Update Packagist') { 
-                sh "bash -x update.sh"
-        }*/
+        stage('Update Packagist') { 
+          sh 'curl -XPOST -H\'content-type:application/json\' \'https://packagist.org/api/update-package?username=nabab&apiToken=492hld546pc044k40o4g\' -d\'{"repository":{"url":"https://packagist.org/packages/bbn/bbn"}}\''
+        }
 }
