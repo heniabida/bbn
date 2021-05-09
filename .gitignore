@@ -12,3 +12,4 @@ build/*
 [core]
 filemode = false
 *.* text eol=lf
+Jenkinsfile
